@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<title>Feet to Meters Length Converter</title>
+<head>
+<style>
+p {
+    text-align: center;
+}
+body {
+	background-color:dodgerblue
+    }
+
+</style>
+</head>
+<body>
+<h1 align="center">Distance Unit Converter</h1>
+<h2 align="center">by Steven Evans</h2>
+
+<p align="Center">Please enter a value and choose the units to convert</p>
+
+
+<p><label>Input Value</label>
+<input id="in" value="0" type="number" onchange="UnitConverter()"></p>
+  
+<p><label>From Unit:</label><select onchange="UnitConverter()" id="FromUnit"> 
+<option value="in">inches</option>
+<option value="ft">feet</option>
+<option value="y">yards</option>
+<option value="mile">miles</option>
+<option value="m">meters</option>
+<option value="km">kilometers</option> 
+</select></p>
+<p><label>To Unit:</label><select onchange="UnitConverter()" id="ToUnit"> 
+<option value="in">inches</option>
+<option value="ft">feet</option>
+<option value="y">yards</option>
+<option value="mile">miles</option>
+<option value="m">meters</option>
+<option value="km">kilometers</option> 
+</select> </p>
+<p><label>Output Value:</label>
+  <p id="answer"></p></p>
+
+<script>
+function UnitConverter() {
+	var FromUnit=document.getElementById("FromUnit").value;
+	var ToUnit=document.getElementById("ToUnit").value;
+	var x=document.getElementById("in").value;
+   
+    
+    
+    
+	if (FromUnit=="ft"){
+    	x=x*12;
+        }
+    if (FromUnit=="y"){
+    	x=x*36;
+        }
+    if (FromUnit=="mile"){
+    	x=x*5280*12;
+        }
+    if (FromUnit=="m"){
+    	x=x*100/2.54;
+        }
+    if (FromUnit=="km"){
+    	x=x*1000*100/2.54;
+        }
+	// Now that we have our units in inches, turn them into the proper unit 
+	if (ToUnit=="ft"){
+    	x=x/12;
+        }
+    if (ToUnit=="y"){
+    	x=x/36;
+        }
+    if (ToUnit=="mile"){
+    	x=x/12/5280;
+        }
+    if (ToUnit=="m"){
+    	x=x/100*2.54;
+        }
+    if (ToUnit=="km"){
+    	x=x/1000/100*2.54;
+        }
+    // Now x is in the proper units//
+    document.getElementById("answer").innerHTML = x;
+    }
+</script>
+</body>
+</html>
