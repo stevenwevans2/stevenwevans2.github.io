@@ -4,16 +4,84 @@
 <style>
 tr.row1{background-color: dodgerblue;}
 </style>
+ <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>FeatureLayer - 4.6</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.6/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+
+        "esri/layers/FeatureLayer",
+		"esri/layers/MapImageLayer",
+        "dojo/domReady!"
+      ],
+      function(
+        Map, MapView,
+        FeatureLayer, MapImageLayer
+      ) {
+
+        var map = new Map({
+          basemap: "hybrid"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+
+          extent: { // autocasts as new Extent()
+            xmin: -12500000,
+            ymin: 4870000,
+            xmax: -12400000,
+            ymax: 4950000,
+            spatialReference: 102100
+          }
+        });
+
+        /********************
+         * Add feature layer
+         ********************/
+
+        // Lakes
+       var featureLayer2 = new FeatureLayer({
+		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/Streams/MapServer"
+        });
+
+        map.add(featureLayer2);   
+		 var featureLayer = new MapImageLayer({
+          url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/DEM/MapServer"
+        });
+		featureLayer.opacity = 0.8;
+        map.add(featureLayer);
+
+      });
+  </script>
+  
 </head>
 <body>
 
 <table><tr class = "row1"><th><img src="http://clipartbarn.com/wp-content/uploads/2017/08/Bikes-and-bicycles-clipart-the-arts-media-gallery-pbs.png" height="100" width= "100">
 <th><h1>
 Bicycle Path Planning Tool
-</h1></th></tr>
+</h1></th></tr><tr class = "row1"><td></td><td colspan="2"><p>By Steven Evans. Feb 9, 2018.</p></td></tr>
 <hr>
 <tr><td align="middle"><button type="button" style="height:30px;width:100px" onclick="alert('Instruction Window')">Instructions</button></td>
-<td rowspan="5"><img src="http://www.nationsonline.org/maps/USA/Utah_map.jpg" height ="500" width ="550" alt = "Map Interface"></td><tr>
+<td rowspan="5"><div id="viewDiv" style="width:550px;height:500px"></div></td><tr>
 <tr><td align="middle"><button type="button" style="height:30px;width:100px" onclick="alert('Select an origin and a destination on the map interface.')">Select Points</button></td>
 </tr>
 <tr><td align="middle">
