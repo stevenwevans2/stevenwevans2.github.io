@@ -5,84 +5,76 @@
 tr.row1{background-color: dodgerblue;}
 </style>
  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>FeatureLayer - 4.6</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
-  <script src="https://js.arcgis.com/4.6/"></script>
+<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+<script src="https://js.arcgis.com/4.6/"></script>
 
-  <style>
-    html,
-    body,
-    #viewDiv {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-    }
-  </style>
+<title style= "color: dodgerblue;">Bike Route Tool</title>
 
-  <script>
-  require([
+<style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+<script src="https://js.arcgis.com/4.6/"></script>
+<script>
+require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/MapImageLayer",
+    "esri/layers/FeatureLayer",
     "dojo/dom",  // require dojo/dom for getting the DOM element
     "dojo/on",   // require dojo/on for listening to events on the DOM
-    "dojo/domReady!",
-    "esri/layers/FeatureLayer"
-		
-], 
-      function(
-        Map, MapView,
-        FeatureLayer, MapImageLayer, dom, on
-      ) {
-        var map = new Map({
-          basemap: "hybrid"
-        });
-        
-        /********************
-         * Add feature layer
-         ********************/
-        // Lakes
-       var utahlakes = new FeatureLayer({
-		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/Streams/MapServer"
-        });
-        map.layers.add(utahlakes);   
-		 var utahdem = new FeatureLayer({
-          url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/DEM/MapServer"
-        });
-		utahdem.opacity = 0.8;
-        map.layers.add(utahdem);
-      var view = new MapView({
-          container: "viewDiv",
-          map: map,
-          extent: { // autocasts as new Extent()
-            xmin: -12500000,
-            ymin: 4870000,
-            xmax: -12400000,
-            ymax: 4950000,
-            spatialReference: 102100
-          }
-        });
-     // Create a variable referencing the checkbox node
-    	var demLyrToggle = dom.byId("dem");
+    "dojo/domReady!"
+], function(Map, MapView, MapImageLayer, FeatureLayer, dom, on){
+	
+	var map = new Map({
+	  basemap: "satellite"
+	  
+	});
+  	
+	var utah_dem_Lyr = new MapImageLayer({
+		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/DEM/MapServer",
+		id: "utahdem"
+	});
+	
+	var waterLyr = new FeatureLayer({
+		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/Streams/MapServer",
+		id: "snotel"
+	});	
+	
+	map.layers.add(utah_dem_Lyr);
+	map.layers.add(waterLyr);
+	
+	var view = new MapView({
+	  container: "viewDiv",  // Reference to the scene div created in step 5
+	  map: map,  // Reference to the map object created before the scene
+	  zoom: 4,  // Sets zoom level based on level of detail (LOD)
+	  center: [-111.1, 39.1]  // Sets center point of view using longitude,latitude
+	});
+	// Create a variable referencing the checkbox node
+    var demLyrToggle = dom.byId("dem");
+
     // Listen to the onchange event for the checkbox
-   		 on(demLyrToggle, "change", function(){
+    on(demLyrToggle, "change", function(){
       // When the checkbox is checked (true), set the layer's visibility to true
-     	 utahdem.visible = demLyrToggle.checked;
-  		  });
-     
-     	 
-   		
-		var lakesLyrToggle = dom.byId("lakes");
-    // Listen to the onchange event for the checkbox
-    	on(lakesLyrToggle, "change", function(){
-      // When the checkbox is checked (true), set the layer's visibility to true
-     	 utahlakes.visible = lakesLyrToggle.checked;
-  		  });
+      utah_dem_Lyr.visible = demLyrToggle.checked;
     });
-  </script>
+	var snotelLyrToggle = dom.byId("snoLyr");
+
+    // Listen to the onchange event for the checkbox
+    on(snotelLyrToggle, "change", function(){
+      // When the checkbox is checked (true), set the layer's visibility to true
+      waterLyr.visible = snotelLyrToggle.checked;
+    });
+
+  });
+</script>
   
 </head>
 <body>
@@ -98,7 +90,7 @@ Bicycle Path Planning Tool
   </span>
   <br />
   <span id="layToggle">
-    <input type="checkbox" id="lakes" checked> Lakes
+    <input type="checkbox" id="snoLyr" checked> Lakes
   </span></td></tr>
  
 <hr>
