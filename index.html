@@ -40,7 +40,21 @@ tr.row1{background-color: dodgerblue;}
         var map = new Map({
           basemap: "hybrid"
         });
-        var view = new MapView({
+        
+        /********************
+         * Add feature layer
+         ********************/
+        // Lakes
+       var utahlakes = new FeatureLayer({
+		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/Streams/MapServer"
+        });
+        map.layers.add(utahlakes);   
+		 var utahdem = new FeatureLayer({
+          url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/DEM/MapServer"
+        });
+		utahdem.opacity = 0.8;
+        map.layers.add(utahdem);
+      var view = new MapView({
           container: "viewDiv",
           map: map,
           extent: { // autocasts as new Extent()
@@ -51,39 +65,23 @@ tr.row1{background-color: dodgerblue;}
             spatialReference: 102100
           }
         });
-        /********************
-         * Add feature layer
-         ********************/
-        // Lakes
-       var lakes = new FeatureLayer({
-		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/Streams/MapServer"
-        });
-        map.add(lakes);   
-		 var dem = new FeatureLayer({
-          url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/DEM/MapServer"
-        });
-		dem.opacity = 0.8;
-        map.add(dem);
-      });
      // Create a variable referencing the checkbox node
     	var demLyrToggle = dom.byId("dem");
-
     // Listen to the onchange event for the checkbox
    		 on(demLyrToggle, "change", function(){
       // When the checkbox is checked (true), set the layer's visibility to true
-     	 dem.visible = demLyrToggle.checked;
+     	 utahdem.visible = demLyrToggle.checked;
   		  });
      
      	 
    		
 		var lakesLyrToggle = dom.byId("lakes");
-
     // Listen to the onchange event for the checkbox
     	on(lakesLyrToggle, "change", function(){
       // When the checkbox is checked (true), set the layer's visibility to true
-     	 lakes.visible = lakesLyrToggle.checked;
+     	 utahlakes.visible = lakesLyrToggle.checked;
   		  });
-
+    });
   </script>
   
 </head>
@@ -102,7 +100,7 @@ Bicycle Path Planning Tool
   <span id="layToggle">
     <input type="checkbox" id="lakes" checked> Lakes
   </span></td></tr>
-  
+ 
 <hr>
 <tr><td align="middle"><button type="button" style="height:30px;width:100px" onclick="alert('Instruction Window')">Instructions</button></td>
 <td rowspan="5"><div id="viewDiv" style="width:550px;height:500px"></div></td><tr>
