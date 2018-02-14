@@ -37,6 +37,20 @@ require([
 	  basemap: "satellite"
 	  
 	});
+    var template = {
+  // ZIP is the name of a field in the service containing the zip code number of the feature
+  title: "{gnis_name}",
+  content: "This {ftype_text} has an area of {areasqkm} square kilometers.",
+  fieldInfos:[{
+  	fieldName:"areasqkm",
+    format: {
+    	digitSeparator: true, // Use a comma separator for large numbers
+    	places: 0 // Sets the number of decimal places to 0 and rounds up
+    }
+    }]
+}
+
+  
   	
 	var utah_dem_Lyr = new MapImageLayer({
 		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/DEM/MapServer",
@@ -44,8 +58,10 @@ require([
 	});
 	
 	var waterLyr = new FeatureLayer({
-		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/Streams/MapServer",
-		id: "snotel"
+		url: "http://geoserver2.byu.edu/arcgis/rest/services/StorminMormons/Lakes/FeatureServer/0",
+		id: "snotel",
+        outFields: ["*"],
+ 		popupTemplate: template
 	});	
 	
 	map.layers.add(utah_dem_Lyr);
@@ -54,8 +70,8 @@ require([
 	var view = new MapView({
 	  container: "viewDiv",  // Reference to the scene div created in step 5
 	  map: map,  // Reference to the map object created before the scene
-	  zoom: 4,  // Sets zoom level based on level of detail (LOD)
-	  center: [-111.1, 39.1]  // Sets center point of view using longitude,latitude
+	  zoom: 10,  // Sets zoom level based on level of detail (LOD)
+	  center: [-111.7, 40.2]  // Sets center point of view using longitude,latitude
 	});
 	// Create a variable referencing the checkbox node
     var demLyrToggle = dom.byId("dem");
@@ -72,8 +88,9 @@ require([
       // When the checkbox is checked (true), set the layer's visibility to true
       waterLyr.visible = snotelLyrToggle.checked;
     });
+    
+   }); 
 
-  });
 </script>
   
 </head>
