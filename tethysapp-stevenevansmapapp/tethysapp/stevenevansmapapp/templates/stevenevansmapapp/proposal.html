@@ -1,0 +1,75 @@
+{% extends "stevenevansmapapp/base.html" %}
+{% load tethys_gizmos %}
+
+{% block header_buttons %}
+  <div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Help">
+    <a data-toggle="modal" data-target="#help-modal"><span class="glyphicon glyphicon-question-sign"></span></a>
+  </div>
+{% endblock %}
+
+{% block app_content %}
+  <h1>Bike Route Planning Tool<h1>
+  <h2>Team Stormin Mormons</h2>
+  <h2>Chris Garcia, Jared Lillywhite, Steven Evans</h2>
+  <h2>CE EN 514 Project Proposal</h2>
+  <h2>January 18, 2018</h2>
+  <br>
+  <br>
+  <h2>Project Introduction</h2>
+  <p>Team Stormin Mormons (consisting of Chris Garcia, Jared Lillywhite, and Steven Evans) will create a Tethys web app that locates the best location for a new bike route between 2 points chosen by the user. This project shall be titled, “Bike Route Planning Tool” and will be completed in April 2018. This project addresses a need in transportation engineering. This app can be used to determine a safe, scenic bike route from origin to destination (selected by the user). The route will depend on input from the user, depending on whether they prefer a flat ride or lots of hills or lots of trees or views of lakes or rivers or mountains.</p>
+  <br>
+  <br>
+  <h2>Project Data</h2>
+  <p>This project will require both vector and raster data. Road, trail, stream, lake, and land use data will be obtained in vector form for analysis. Elevation data will be obtained through DEM raster data and will be used to also calculate slope. The vector data sets will be converted to raster data sets. Each data set will be reclassiffied so that it reflects the cost of riding through certain areas (more desirable spots will have lower costs). Each of these data sets will be combined together using map algebra to yield a dataset displaying the total cost for each cell through which the road will travel. The least cost path tool will then be used to calculate the cheapest route from the two user defined points. These calculations will all occur on the back end, invisible to the user. The user will input the starting and ending locations on the map interface and will select their preferences of scenery, elevation, and other factors. Then the analysis will run on the back end and will return the least cost path displayed on the user’s map on the front end. The app will also display a profile view of the road, showing its vertical alignment.</p>
+  <br>
+  <br>
+  <h2>Project Geoprocessing</h2>
+  <p>n general terms, the workflow that runs on the server will take user-defined starting and ending locations and will run a least-cost path analysis to produce an optimal route for a new bike path to be built between the two locations. The cost will be computed based on factors including elevation change, crossing of existing major roads, and other factors that will be decided at a later date. The workflow will also calculate the total distance traveled along the computed path, the estimated time from the starting location to the ending location, and the total elevation change along the path. The final route will be displayed on a map along with a profile view showing the elevation change throughout the proposed bike path.</p>
+  <br>
+  <br>
+  <h2>Project User Interface</h2>
+  <p>At this point, we are somewhat uncertain which options to include in the user interface.  However, here is a list of general ideas to include in our app’s functionality:
+A slider of importance (or some form of indication regarding individual variable importance) will be added to allow users to prioritize which options are most concrete to the project.  This slider of importance can be used in prioritizing factors, such as the road’s total length or travel time; proximity to school zones or other areas of attraction; number of bike lanes; change in slope; and proximity to major roads (e.g., close to the highway, in a more rural location) and the environment (e.g., running alongside a stream, through trees or mountains, etc.).
+Users can select a buffer distance around their desired beginning and ending locations so the program can select an optimal location within a specific area.  So, if a buffer were set to 100 meters, then the starting and/or ending location of the road could be designed anywhere within 100 meters of the originally selected spot.  
+A slope/elevation view will be provided to users based on the current path design to conveniently and quickly allow users to view the projected layout of the path.  Perhaps a plan view of the path may also be added.
+Other options may include a raster display of precipitation data, current AADT on nearby roads, and/or bike-vehicle crash frequencies on nearby roads. </p>
+  <br>
+  <br>
+  <h2>Project Source Code and Storage</h2>
+  <p>The source code for this app will be stored on Github.com under the the account ‘jaredlillywhite.’ The repository under which the code will be stored will be found at https://github.com/jaredlillywhite/BikeRoutePlanningTool.
+
+The source code for our app will be licensed under the MIT license. This will make the app completely open source, allowing users to make any copies or changes that they desire. This license will also release us of any liability or warranty obligations related to the app.</p>
+  <br>
+  <br>
+  <h2>Project Responsibilities</h2>
+  <p>All members of the group will participate in all phases of the project. This portion of the project proposal is simply to identify which team member is responsible for the leadership of each portion of the project.
+For planning purposes, we have broken the project into three phases. Phase 1 is primarily a planning phase. In this phase, we will outline the details of the project that have yet to be defined. For example, we will identify the area of coverage of the app, the exact parameters for the workflow, and the extent to which the user will be able to adjust the weighting of those parameters when running the workflow. We will also identify and locate necessary data for our project in Phase 1. Chris Garcia will be leading this phase of the project. Phase 2 involves creating the workflow that the app will be running. In this phase, the least-cost path model will be built and uploaded to an ArcGIS server to be called by the tethys app. This model will include all of the functionality decided on in Phase 1. This phase will be led by Steven Evans. Phase 3 will involve creating the interface for the app. We will use tethys to create a user-friendly interface with maps, buttons, drop-down lists and sliders that allow users to choose their parameters for the workflow and see the results. This phase will be led primarily by Jared Lillywhite.</p>
+{% endblock %}
+
+{# Use the after_app_content block for modals #}
+{% block after_app_content %}
+  <!-- Example Modal -->
+  <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="help-modal-label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h5 class="modal-title" id="help-modal-label">Example Modal</h5>
+        </div>
+        <div class="modal-body">
+          <p>You can add custom buttons to the app header using the <code>header_buttons</code> block. Use anchor/link tags for the button and wrap it in a div with the class <code>header-button</code>. For buttons with the gliphyicons, add the <code>glyphicon-button</code> class as well.</p>
+          <p>Ever have trouble using a modal in a Tethys app? Use the <code>after_app_content</code> block for modal content to allow them to function properly. See: <a href="https://getbootstrap.com/javascript/#modals">Bootstrap Modals</a></p>
+          <p>Add tooltips to any element by adding the <code>data-toggle</code>, <code>data-placement</code>, and <code>title</code> attributes to the button. See: <a href="https://getbootstrap.com/javascript/#tooltips">Bootstrap Tooltips</a></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block app_actions %}
+
+{% endblock %}
