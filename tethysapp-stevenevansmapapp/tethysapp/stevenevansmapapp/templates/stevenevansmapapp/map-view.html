@@ -117,20 +117,21 @@ Bicycle Path Planning Tool
   <br />
   <span id="layToggle">
     <input type="checkbox" id="snoLyr" checked> Lakes
-  </span></td></tr>
+  </span>
  
 <hr>
-<div id="viewDiv" style="width:550px;height:500px">
+<div id="viewDiv" style="width:100%;height:500px"></div>
+<div style="width:100%;height:500px">{% gizmo line_plot_view %}</div>
 
 
 
 
 
 
-</tr>
-</table>
+
 </body>
 </html>
+
 {% endblock %}
 
 {# Use the after_app_content block for modals #}
@@ -159,4 +160,16 @@ Bicycle Path Planning Tool
 
 {% block app_actions %}
 
+{% endblock %}
+
+{% block app_navigation_items %}
+  <li class="title">App Navigation</li>
+  <li class="active"><a href="/apps/stevenevansmapapp">Home</a></li>
+  <li><a href="/apps/stevenevansmapapp/map-view">Map View</a></li>
+  <li><a href="/apps/stevenevansmapapp/data-services">Data Services</a></li>
+  <li><a href="/apps/stevenevansmapapp/about">About</a></li>
+  <li><a href="/apps/stevenevansmapapp/proposal">Proposal</a></li>
+  <li><a href="/apps/stevenevansmapapp/mockups">Mock Ups</a></li>
+  {% gizmo slider_bar %}
+  {% gizmo button %}
 {% endblock %}

@@ -6,7 +6,6 @@ tethysapp/stevenevansmapapp/app.py
 tethysapp/stevenevansmapapp/controllers.py
 tethysapp/stevenevansmapapp/handoff.py
 tethysapp/stevenevansmapapp/model.py
-tethysapp/stevenevansmapapp/tests/__init__.py
 tethysapp/stevenevansmapapp/tests/tests.py
 tethysapp_stevenevansmapapp.egg-info/PKG-INFO
 tethysapp_stevenevansmapapp.egg-info/SOURCES.txt
