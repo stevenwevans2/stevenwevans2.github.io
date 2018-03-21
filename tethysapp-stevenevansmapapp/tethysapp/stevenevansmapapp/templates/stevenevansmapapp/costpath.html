@@ -29,12 +29,42 @@ tr.row1{background-color: dodgerblue;}
     height: 100%;
     width: 100%;
   }
+  #topbar {
+      background: #fff;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 10px;
+    }
+
+    .action-button {
+      font-size: 16px;
+      background-color: transparent;
+      border: 1px solid #D3D3D3;
+      color: #6e6e6e;
+      height: 32px;
+      width: 32px;
+      text-align: center;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .action-button:hover,
+    .action-button:focus {
+      background: #0079c1;
+      color: #e4e4e4;
+    }
+
+    .active {
+      background: #0079c1;
+      color: #e4e4e4;
+    }
 </style>
 <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
 <script src="https://js.arcgis.com/4.6/"></script>
 <script>
 require([
     "esri/Map",
+    "esri/widgets/Sketch/SketchViewModel",
     "esri/layers/GraphicsLayer",
     "esri/Graphic",
     "esri/geometry/Point",
@@ -47,8 +77,8 @@ require([
     "dojo/dom",  // require dojo/dom for getting the DOM element
     "dojo/on",   // require dojo/on for listening to events on the DOM
     "dojo/domReady!"
-], function(Map, GraphicsLayer, Graphic, Point, Geoprocessor, LinearUnit, FeatureSet, MapView, MapImageLayer, FeatureLayer, dom, on){
-	
+], function(Map, GraphicsLayer, Graphic, SketchViewModel, Point, Geoprocessor, LinearUnit, FeatureSet, MapView, MapImageLayer, FeatureLayer, dom, on){
+
 	var map = new Map({
 	  basemap: "satellite"
 
@@ -58,7 +88,7 @@ require([
     map.add(graphicsLayer);
 
     var template = {
-  
+
         title: "{gnis_name}",
         content: "This {ftype_text} has an area of {areasqkm} square kilometers.",
         fieldInfos:[{
@@ -123,12 +153,90 @@ require([
         };
 	//add map click function
 
-	//var watershedToggle = dom.byId("watershed");
-    //on(watershedToggle, "change", function(){
-     // if(watershedToggle.checked){
-        view.on("click", bufferPoint);
-     // }
-    //});
+
+
+    //start new crap
+    /*
+    view.when(function() {
+        // create a new sketch view model
+        var sketchViewModel = new SketchViewModel({
+          view: view,
+          layer: GraphicsLayer,
+          pointSymbol: { // symbol used for points
+            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+            style: "square",
+            color: "#8A2BE2",
+            size: "16px",
+            outline: { // autocasts as new SimpleLineSymbol()
+              color: [255, 255, 255],
+              width: 3 // points
+            }
+          }
+        });
+
+        // ************************************************************
+        // Get the completed graphic from the event and add it to view.
+        // This event fires when user presses
+        //  * "C" key to finish sketching point, polygon or polyline.
+        //  * Double-clicks to finish sketching polyline or polygon.
+        //  * Clicks to finish sketching a point geometry.
+        // ***********************************************************
+        sketchViewModel.on("draw-complete", function(evt) {
+          // if multipoint geometry is created, then change the symbol
+          // for the graphic
+          if (evt.geometry.type === "multipoint") {
+            evt.graphic.symbol = {
+              type: "simple-marker",
+              style: "square",
+              color: "green",
+              size: "16px",
+              outline: {
+                color: [255, 255, 255],
+                width: 3
+              }
+            };
+          }
+          // add the graphic to the graphics layer
+          GraphicsLayer.add(evt.graphic);
+          setActiveButton();
+        });
+
+        // ******************************************
+        // activate the sketch to create a multipoint
+        // ******************************************
+        var drawMultipointButton = document.getElementById(
+          "multipointButton");
+        drawMultipointButton.onclick = function() {
+          // set the sketch to create a multipoint geometry
+          sketchViewModel.create("multipoint");
+          setActiveButton(this);
+        };
+
+
+
+        // **************
+        // reset button
+        // **************
+        document.getElementById("resetBtn").onclick = function() {
+          GraphicsLayer.removeAll();
+          sketchViewModel.reset();
+          setActiveButton();
+        };
+
+        function setActiveButton(selectedButton) {
+          // focus the view to activate keyboard shortcuts for sketching
+          view.focus();
+          var elements = document.getElementsByClassName("active");
+          for (var i = 0; i < elements.length; i++) {
+            elements[i].classList.remove("active");
+          }
+          if (selectedButton) {
+            selectedButton.classList.add("active");
+          }
+        }
+      });
+    });
+    //end new crap*/
 
 	//main function
     function bufferPoint(event) {
@@ -194,7 +302,7 @@ require([
     }
 
     //end of new stuff
-  	
+
 
 	// Create a variable referencing the checkbox node
     var demLyrToggle = dom.byId("dem");
@@ -211,11 +319,11 @@ require([
       // When the checkbox is checked (true), set the layer's visibility to true
       waterLyr.visible = snotelLyrToggle.checked;
     });
-    
-   }); 
+
+   });
 
 </script>
-  
+
 </head>
 <body>
 
@@ -234,9 +342,17 @@ Bicycle Path Planning Tool
   <!--<span id="layToggle">
     <input type="checkbox" id="watershed" checked> Watershed Delineation Services
   </span>-->
- 
+
 <hr>
-<div id="viewDiv" style="width:100%;height:500px"></div>
+<div id="viewDiv" style="width:100%;height:500px">
+      <div id="topbar">
+
+      <button class="action-button esri-icon-handle-horizontal" id="multipointButton" type="button"
+        title="Draw multipoint"></button>
+
+      <button class="action-button esri-icon-trash" id="resetBtn" type="button" title="Clear graphics"></button>
+    </div>
+</div>
 <div style="width:100%;height:500px">{% gizmo line_plot_view %}</div>
 
 
@@ -290,3 +406,5 @@ Bicycle Path Planning Tool
   {% gizmo slider_bar %}
   {% gizmo button %}
 {% endblock %}
+
+

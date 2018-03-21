@@ -36,6 +36,11 @@ class Stevenevansmapapp(TethysAppBase):
                 controller='stevenevansmapapp.controllers.map_view'
             ),
             UrlMap(
+                name='costpath',
+                url='costpath',
+                controller='stevenevansmapapp.controllers.costpath'
+            ),
+            UrlMap(
                 name='data_services',
                 url='data-services',
                 controller='stevenevansmapapp.controllers.data_services'

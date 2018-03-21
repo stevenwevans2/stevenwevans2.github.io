@@ -78,6 +78,63 @@ def home(request):
 
     return render(request, 'stevenevansmapapp/home.html', context)
 @login_required()
+def costpath(request):
+    """
+    Controller for the app home page.
+    """
+    slider_bar= RangeSlider(display_text='Desired Trail Grade',
+        name='slider_bar',
+        min=0,
+        max=20,
+        initial=10,
+        step=1
+    )
+
+    button = Button(
+        display_text='Calculate',
+        name='button',
+        attributes={
+            'data-toggle': 'tooltip',
+            'data-placement': 'top',
+            'title': 'Calculate',
+            'onclick':'calculate()'
+        }
+    )
+
+    line_plot_view = LinePlot(
+
+        engine='highcharts',
+        title='Elevation Profile',
+        subtitle='Utah Bike Trail',
+        spline=True,
+        x_axis_title='Distance',
+        x_axis_units='mi',
+        y_axis_title='Elevation',
+        y_axis_units='Ft',
+        series=[
+            {
+                'name': 'Elevation',
+                'color': '#0066ff',
+                'marker': {'enabled': False},
+                'data': [
+                    [0, 5], [10, -70],
+                    [20, -86.5], [30, -66.5],
+                    [40, -32.1],
+                    [50, -12.5], [60, -47.7],
+                    [70, -85.7], [80, -106.5]
+                ]
+            },
+        ]
+    )
+
+    context={
+        'button': button,
+        'slider_bar':slider_bar,
+        'line_plot_view': line_plot_view
+    }
+    return render(request, 'stevenevansmapapp/costpath.html', context)
+
+@login_required()
 def map_view(request):
     """
     Controller for the app home page.
