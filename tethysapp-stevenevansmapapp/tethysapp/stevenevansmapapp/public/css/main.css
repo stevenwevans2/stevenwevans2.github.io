@@ -1,0 +1,71 @@
+#map {
+    height:400px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+#mapslope {
+    height:400px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+#buttons {
+    text-align:center;
+    }
+
+#dimtable, resulttable {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+#trenchprofile {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+}
+
+#modalbut {
+    padding: 5%;
+    text-align:center;
+}
+
+#resulttable {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#topbar {
+}
+
+.action-button {
+  font-size: 16px;
+  background-color: transparent;
+  border: 1px solid #D3D3D3;
+  color: #6e6e6e;
+  height: 32px;
+  width: 32px;
+  text-align: center;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.action-button:hover,
+.action-button:focus {
+  background: #0079c1;
+  color: #e4e4e4;
+}
+
+.active {
+  background: #0079c1;
+  color: #e4e4e4;
+}
+
+#percent {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    }
