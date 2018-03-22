@@ -23,8 +23,8 @@
             <file leaf-file-name="costpath.html" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/templates/stevenevansmapapp/costpath.html">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="522">
-                    <caret line="29" column="79" lean-forward="true" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
+                  <state relative-caret-position="342">
+                    <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
                     <folding />
                   </state>
                 </provider>
@@ -112,19 +112,19 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="119" column="28" lean-forward="false" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+            <state relative-caret-position="270">
+              <caret line="194" column="10" lean-forward="true" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
               <folding>
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
-                <element signature="e#0#8630#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
+                <element signature="e#0#8745#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -160,8 +160,8 @@
         <option value="$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/controllers.py" />
         <option value="$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/public/css/main.css" />
         <option value="$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/templates/stevenevansmapapp/base.html" />
-        <option value="$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/templates/stevenevansmapapp/costpath.html" />
         <option value="$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/public/js/main.js" />
+        <option value="$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/templates/stevenevansmapapp/costpath.html" />
       </list>
     </option>
   </component>
@@ -378,27 +378,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/templates/stevenevansmapapp/costpath.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="79" lean-forward="true" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
+        <state relative-caret-position="342">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tethysapp-stevenevansmapapp/tethysapp/stevenevansmapapp/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="119" column="28" lean-forward="false" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+        <state relative-caret-position="270">
+          <caret line="194" column="10" lean-forward="true" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
           <folding>
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
-            <element signature="e#0#8630#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
+            <element signature="e#0#8745#0" expanded="false" />
           </folding>
         </state>
       </provider>

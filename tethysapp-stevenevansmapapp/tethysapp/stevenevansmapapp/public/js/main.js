@@ -107,6 +107,7 @@ init_map_slope = function(){
           };
 
           console.log(startpt)
+          console.log(endpt)
 
           gp.submitJob(params).then(completeCallback, errBack, statusCallback);
 
@@ -125,6 +126,8 @@ init_map_slope = function(){
         }
 
         function drawResultErrBack(err) {
+            console.log("I'm here");
+            console.log(data.value.features[0]);
             console.log("draw result error: ", err);
         }
 
